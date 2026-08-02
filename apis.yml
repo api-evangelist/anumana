@@ -1,17 +1,34 @@
 aid: anumana
 name: Anumana
-description: 'Anumana is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: 'Anumana, Inc. is a cardiac AI health-technology company founded as a joint
+  venture between Mayo Clinic and nference, commercializing ECG-AI algorithms that read
+  standard 10-second, 12-lead electrocardiograms to surface disease signals that are not
+  visible to the human eye. Its portfolio includes the FDA-cleared ECG-AI LEF algorithm for
+  detecting low ejection fraction in patients at risk of heart failure (trained on roughly
+  2.9 million ECG-echo pairs across 676,000+ patients), the first and only FDA-cleared
+  ECG-AI algorithm for cardiac amyloidosis, and an FDA-cleared algorithm for early detection
+  of pulmonary hypertension, plus a pipeline that includes hyperkalemia. Anumana is delivered
+  as a regulated medical device that runs inside the customer''s own ECG management system
+  and EHR environment, ingesting digital waveform files and returning results into clinical
+  workflow rather than being consumed as a public developer API.'
+image: https://anumana.ai/wp-content/uploads/2025/09/favicon-ai.png
 url: https://raw.githubusercontent.com/api-evangelist/anumana/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
 specificationVersion: '0.20'
 created: '2026-08-02'
 modified: '2026-08-02'
 tags:
 - Company
+- Health Care
+- Artificial Intelligence
+- Machine Learning
+- Medical Devices
+- Cardiology
+- Diagnostics
+- Clinical Decision Support
+- ECG
+- Digital Health
 apis: []
 maintainers:
 - FN: Kin Lane
@@ -20,4 +37,59 @@ maintainers:
   email: info@apis.io
 common:
 - type: Website
+  url: https://anumana.ai/
+- type: Documentation
+  name: ECG-AI LEF Instructions for Use
+  url: https://anumana.ai/ecg-ai-lef-ifu/
+- type: Support
+  url: https://anumana.ai/support/
+- type: Blog
+  url: https://anumana.ai/news/
+- type: BlogRSS
+  url: https://anumana.ai/feed/
+- type: Login
+  name: Anumana platform sign in
+  url: https://api.anumana.ai/auth/signin/
+- type: TermsOfService
+  url: https://anumana.ai/terms-of-use/
+- type: PrivacyPolicy
+  url: https://anumana.ai/privacy-policy/
+- type: Security
+  name: Coordinated vulnerability disclosure policy
+  url: https://anumana.ai/vulnerability-disclosure/
+- type: VulnerabilityDisclosure
+  url: security/anumana-vulnerability-disclosure.yml
+- type: TrustCenter
+  url: security/anumana-trust-center.yml
+- type: DomainSecurity
+  url: security/anumana-domain-security.yml
+- type: Conformance
+  url: conformance/anumana-conformance.yml
+- type: Compliance
+  name: FDA 510(k) clearances (six, verified against openFDA)
+  url: conformance/anumana-conformance.yml
+- type: LLMsTxt
+  url: llms/anumana-llms.txt
+- type: FAQ
+  url: https://anumana.ai/faqs/
+- type: Careers
+  url: https://anumana.ai/careers/
+- type: Publications
+  url: https://anumana.ai/publications
+- type: Events
+  url: https://anumana.ai/events/
+- type: Patents
+  url: https://anumana.ai/patents/
+- type: Demo
+  url: https://anumana.ai/request-a-demo/
+- type: LinkedIn
+  url: https://www.linkedin.com/company/anumana-inc
+- type: Profile
+  name: Forge Global secondary-market listing
   url: https://forgeglobal.com/anumana_stock/
+x-enrichment:
+  date: '2026-08-02'
+  status: enriched
+  artifacts_added: 8
+  pass: local-v1
+

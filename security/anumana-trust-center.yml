@@ -1,0 +1,29 @@
+generated: '2026-08-02'
+method: probed
+probe: true
+url: https://trust.anumana.ai/
+platform: Vanta (trust report)
+certifications: []
+certifications_readable: false
+x-evidence:
+  fetched: '2026-08-02'
+  url: https://trust.anumana.ai/
+  http_status: 200
+  content_type: text/html
+  content_location: https://assets.vanta.com/static/index-trust-report.bac6fdd16dd7ed43562471c5b0e3793882464477.html
+  page_title: Anumana Trust Center
+  vanta_slug_id: 0ldo9mv02uebxq0lo1djg
+notes:
+- 'A trust center is genuinely published at trust.anumana.ai and is served by Vanta
+  (assets.vanta.com trust-report bundle, Vanta datadog application id in the page shell).'
+- 'The page is fully client-rendered and its content API requires a signed request
+  (app.vanta.com/graphql returns "Missing `signature` or `signedAt`"; api.vanta.com
+  trust-center endpoints return 401). No named certification (SOC 2, ISO 27001, HIPAA,
+  HITRUST, FedRAMP) could be read anonymously.'
+- 'Because no certification names were verifiable, no `Compliance` pointer is emitted
+  in apis.yml. Recording presence without readable certifications would credit a
+  compliance posture that was not observed. Re-probe if Vanta exposes the report
+  publicly or if certifications are named on anumana.ai.'
+related:
+  vulnerability_disclosure: security/anumana-vulnerability-disclosure.yml
+  regulatory_conformance: conformance/anumana-conformance.yml

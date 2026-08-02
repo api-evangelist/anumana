@@ -1,0 +1,105 @@
+generated: '2026-08-02'
+method: probed
+source: live probes of every Anumana host, 2026-08-02
+conclusion: no-public-machine-readable-contract
+summary: >-
+  Anumana publishes no public developer API. It is an FDA-regulated cardiac AI medical
+  device company whose ECG-AI algorithms are deployed inside the customer's own ECG
+  management system and EHR environment, ingesting XML or DICOM waveform files and
+  writing results back over HL7. The only machine-readable surface reachable anonymously
+  is the WordPress REST API on the marketing site, which is site content - not the
+  product - and is deliberately NOT registered as an Anumana API in apis.yml.
+hosts_probed:
+- host: anumana.ai
+  status: 200
+  role: marketing website (WordPress, Yoast, Bricks theme)
+- host: www.anumana.ai
+  status: 200
+  role: alias of anumana.ai
+- host: api.anumana.ai
+  status: 200
+  role: authenticated nferx platform application - sign-in wall
+- host: trust.anumana.ai
+  status: 200
+  role: Vanta trust center
+- host: anumana.io
+  status: 404
+  role: parked / unrelated
+- host: anumana.com
+  status: NXDOMAIN
+  role: does not resolve
+- host: docs.anumana.ai
+  status: NXDOMAIN
+- host: developer.anumana.ai
+  status: NXDOMAIN
+- host: app.anumana.ai
+  status: NXDOMAIN
+- host: portal.anumana.ai
+  status: NXDOMAIN
+- host: status.anumana.ai
+  status: NXDOMAIN
+probes:
+  openapi:
+    result: none
+    paths_tried: [/openapi.json, /openapi.yaml, /swagger.json, /v1/openapi.json, /api-docs,
+      /docs, /redoc, /api/openapi.json, /api/v1/openapi.json, /api/docs]
+    anumana_ai: all 404 (or 403 on /openapi.yaml)
+    api_anumana_ai: all answered by the sign-in wall; no candidate parsed as OpenAPI/Swagger
+  graphql:
+    result: none
+    note: /graphql is 404 on anumana.ai and an auth redirect on api.anumana.ai. No
+      introspection was possible; the schema was NOT guessed.
+  mcp:
+    result: none
+    note: No hosted or remote MCP server is advertised in docs, on npm, or in any MCP
+      registry. tools/list was not attempted because no endpoint exists to call.
+  a2a_agent_card:
+    result: none
+    note: '/.well-known/agent-card.json and /.well-known/agent.json return 404 on
+      anumana.ai. On api.anumana.ai both return the sign-in wall, which also answers
+      /totally-bogus-path-xyz identically - rejected as a catch-all false positive.
+      Per pipeline policy NO a2a/ artifact was written.'
+  llms_txt:
+    result: none
+    note: /llms.txt is 404 on anumana.ai. A generated one is written to llms/.
+  packages_sdks:
+    result: none
+    registries_checked: [npm, PyPI, GitHub]
+    note: 'npm search for "anumana" returns 0 packages; pypi.org/pypi/anumana is 404;
+      there is no github.com/anumana organization (404) and no first-party repo in a
+      GitHub code search. No SDKs, no CLI. Nothing was fabricated.'
+  asyncapi_webhooks:
+    result: none
+    note: No event, streaming, or webhook surface is documented anywhere on the site.
+  status_page:
+    result: none
+    note: status.anumana.ai does not resolve; no third-party status page (Statuspage,
+      Instatus, Better Stack) was located.
+  changelog:
+    result: none
+    note: No dated product changelog or release-notes page. /news/ is a press-release
+      feed, wired as Blog rather than ChangeLog.
+secondary_surface:
+  name: WordPress REST API (site content)
+  url: https://anumana.ai/wp-json/
+  http_status: 200
+  content_type: application/json
+  size_bytes: 403616
+  registered_in_apis_yml: false
+  rationale: >-
+    This is the stock WordPress REST API exposed by the marketing site's CMS, not an
+    Anumana product interface. Registering it as an Anumana API would materially
+    misrepresent the company's API posture in the catalog, so it is recorded here as an
+    observed fact only. Revisit only if Anumana ever documents it as an intended
+    integration surface.
+integration_model:
+  deployment: runs inside the customer's ECG management system / EHR environment
+  inputs: digital ECG waveform files in XML or DICOM format
+  results_delivery: HL7 datapoints configured to flow results into the customer EHR
+  commercial_entry: https://anumana.ai/request-a-demo/
+  source: https://anumana.ai/our-platform/
+recommendation: >-
+  Re-run contract discovery only if Anumana launches a developer portal, publishes a
+  security.txt, or exposes a partner integration API. As of this pass the honest catalog
+  state is: real company, real regulated products, verified security and regulatory
+  posture, zero public API contract.

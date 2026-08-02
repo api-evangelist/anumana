@@ -1,0 +1,39 @@
+generated: '2026-08-02'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml hosts
+hosts:
+- host: anumana.ai
+  role: marketing website
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct 30 16:52:43 2026 GMT
+  hsts: false
+- host: api.anumana.ai
+  role: authenticated platform application (nferx); every path redirects to /auth/signin/
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Nov 25 13:14:17 2026 GMT
+  hsts: true
+  hsts_max_age: 63072000
+  hsts_include_subdomains: true
+  hsts_preload: true
+- host: trust.anumana.ai
+  role: Vanta-hosted trust center
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct  4 19:36:11 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+  hsts_include_subdomains: true
+domains:
+- domain: anumana.ai
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: reject
+notes:
+- The apex marketing host anumana.ai does not send HSTS; the application host api.anumana.ai
+  sends a two-year HSTS with includeSubDomains and preload.
+- No CAA records are published for anumana.ai. Absence is recorded data, not an error.
+- anumana.com does not resolve; anumana.ai is the operating domain.

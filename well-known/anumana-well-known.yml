@@ -1,0 +1,43 @@
+generated: '2026-08-02'
+method: probed
+source: live GET of the /.well-known/ discovery surface on every Anumana host
+result: none
+summary: >-
+  No /.well-known/ discovery document is published on any Anumana host. anumana.ai
+  returns a WordPress 404 page for every well-known path. api.anumana.ai is a fully
+  authenticated single-page application whose server 302s EVERY unauthenticated path
+  (including /totally-bogus-path-xyz) to /auth/signin/, so any 200 observed there is
+  the sign-in shell, not a discovery document - all such responses were rejected as
+  false positives.
+hosts:
+- host: https://anumana.ai
+  role: marketing website (WordPress)
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/oauth-protected-resource, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404}
+  - {path: /.well-known/agent.json, status: 404}
+  - {path: /.well-known/dnt-policy.txt, status: 404}
+  - {path: /.well-known/change-password, status: 404}
+- host: https://api.anumana.ai
+  role: authenticated platform application (nferx)
+  documents:
+  - {path: /.well-known/security.txt, status: 302, note: redirect to /auth/signin/ - catch-all}
+  - {path: /.well-known/openid-configuration, status: 302, note: redirect to /auth/signin/ - catch-all}
+  - {path: /.well-known/oauth-authorization-server, status: 302, note: redirect to /auth/signin/ - catch-all}
+  - {path: /.well-known/oauth-protected-resource, status: 302, note: redirect to /auth/signin/ - catch-all}
+  - {path: /.well-known/api-catalog, status: 302, note: redirect to /auth/signin/ - catch-all}
+  - {path: /.well-known/ai-plugin.json, status: 302, note: redirect to /auth/signin/ - catch-all}
+  - {path: /.well-known/agent-card.json, status: 302, note: redirect to /auth/signin/ - catch-all}
+  - {path: /.well-known/agent.json, status: 302, note: redirect to /auth/signin/ - catch-all}
+notes:
+- 'No `WellKnown` pointer is wired into apis.yml because zero discovery documents were
+  actually served. This file is the negative-result record so a later run does not
+  re-litigate the same probes.'
+- 'A coordinated vulnerability disclosure policy exists but is published as HTML at
+  https://anumana.ai/vulnerability-disclosure/, not as RFC 9116 security.txt. Filing a
+  security.txt is the cheapest security-posture win available to this provider.'

@@ -1,0 +1,93 @@
+generated: '2026-08-02'
+method: searched
+source: https://api.fda.gov/device/510k.json?search=applicant:%22anumana%22
+docs: https://anumana.ai/ecg-ai-indications-for-use/
+summary: >-
+  Anumana is a regulated medical-device manufacturer, not a public API platform. Its
+  conformance surface is therefore regulatory (FDA 510(k) device clearances) and clinical
+  data-exchange (HL7 / DICOM / XML waveform ingestion inside the customer environment),
+  not API-protocol conformance. No OpenAPI, GraphQL, AsyncAPI or MCP contract is published,
+  so the usual protocol standards below are recorded as not-asserted rather than failed.
+standards:
+- id: fda-510k
+  conforms: true
+  evidence: 'Six Traditional 510(k) clearances held by Anumana, Inc. in the FDA device
+    database (openFDA). See conformance/anumana-fda-510k.json for the verbatim response.'
+  clearances:
+  - k_number: K250652
+    decision_date: '2025-07-28'
+    device_name: ECG-AI Low Ejection Fraction (LEF) 12-Lead algorithm (1010)
+    product_code: QYE
+  - k_number: K253801
+    decision_date: '2026-04-07'
+    device_name: ECG-AI Cardiac Amyloidosis (CA) 12-Lead Algorithm (1040)
+    product_code: SHP
+  - k_number: K252360
+    decision_date: '2026-03-28'
+    device_name: ECG-AI Pulmonary Hypertension (PH) 12-Lead algorithm (1020)
+    product_code: SAT
+  - k_number: K260300
+    decision_date: '2026-06-15'
+    device_name: WatchMate Software
+    product_code: QIH
+  - k_number: K233160
+    decision_date: '2023-11-25'
+    device_name: NeuTrace EP Mapping System v.2.1
+    product_code: DQK
+  - k_number: K232699
+    decision_date: '2023-09-28'
+    device_name: Low Ejection Fraction AI-ECG Algorithm
+    product_code: QYE
+- id: hipaa
+  conforms: true
+  evidence: 'Anumana processes protected health information (12-lead ECG waveforms and
+    patient results) as a US clinical software vendor deployed inside covered-entity
+    environments; a Vanta-hosted trust center is published at https://trust.anumana.ai/.
+    Certification detail behind the trust center is gated and was not readable anonymously.'
+  qualifier: asserted-by-context; specific attestation reports not publicly readable
+- id: hl7-v2
+  conforms: true
+  evidence: 'Vendor integration material describes configuration of HL7 datapoints so
+    ECG-AI results flow into the customer EHR.'
+  qualifier: documented in vendor integration material; no conformance profile published
+- id: dicom
+  conforms: true
+  evidence: 'Digital waveform files are supported in XML and DICOM formats for automated
+    processing by the ECG-AI framework.'
+  qualifier: documented in vendor integration material; no DICOM conformance statement
+    located
+- id: fhir
+  conforms: false
+  evidence: No FHIR resource, capability statement, or FHIR-based integration surface
+    was located on any Anumana host.
+- id: openapi
+  conforms: false
+  evidence: 'Probed /openapi.json, /openapi.yaml, /swagger.json, /v1/openapi.json,
+    /api-docs, /docs, /redoc on anumana.ai (all 404) and api.anumana.ai (every path 302s
+    to /auth/signin/). No OpenAPI document is published.'
+- id: graphql
+  conforms: false
+  evidence: /graphql returns 404 on anumana.ai and an auth redirect on api.anumana.ai.
+- id: asyncapi
+  conforms: false
+  evidence: No event, streaming, or webhook surface is published. Not penalized - there
+    is no event surface to describe.
+- id: oauth2
+  conforms: false
+  evidence: /.well-known/oauth-authorization-server and /.well-known/oauth-protected-resource
+    return 404 on anumana.ai and an auth redirect on api.anumana.ai.
+- id: oidc
+  conforms: false
+  evidence: /.well-known/openid-configuration returns 404 on anumana.ai and an auth
+    redirect on api.anumana.ai.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: No public API responses are observable to classify.
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: '/.well-known/security.txt returns 404. A coordinated vulnerability disclosure
+    policy is published as HTML at https://anumana.ai/vulnerability-disclosure/ instead.'
+- id: a2a
+  conforms: false
+  evidence: /.well-known/agent-card.json and /.well-known/agent.json return 404 on
+    anumana.ai; api.anumana.ai answers every path with an auth redirect. No agent card.
