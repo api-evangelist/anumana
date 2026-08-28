@@ -11,6 +11,17 @@ description: 'Anumana, Inc. is a cardiac AI health-technology company founded as
   as a regulated medical device that runs inside the customer''s own ECG management system
   and EHR environment, ingesting digital waveform files and returning results into clinical
   workflow rather than being consumed as a public developer API.'
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 image: https://anumana.ai/wp-content/uploads/2025/09/favicon-ai.png
 url: https://raw.githubusercontent.com/api-evangelist/anumana/refs/heads/main/apis.yml
 x-type: company
