@@ -45,7 +45,7 @@ tags:
 - Company
 - Healthcare
 - Artificial Intelligence
-- Machine-Learning
+- Machine Learning
 - Medical Devices
 - Cardiology
 - Diagnostics
@@ -63,6 +63,7 @@ tags_raw:
 - Clinical Decision Support
 - ECG
 - Digital Health
+- Machine-Learning
 apis: []
 maintainers:
 - FN: Kin Lane
